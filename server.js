@@ -21,10 +21,18 @@ app.get("/", function (req, res) {
 
 // your first API endpoint... 
 app.get("/api/hello", function (req, res) {
-  res.json({greeting: 'hello API'});
+  res.json({greeting: 'hello everyone', Intro: 'I am Abdullahi Zakariyya and this is my first Backend project with NodeJS'});
 });
+let responseObject = {}
+app.get('/api/timestamp:input', (req, res)=>{
+  var input = req.params.input
+  if(input.includes('-')){
+    responseObject['unix'] = new Date(input).getTime()
+    responseObject['utc'] = new Date(input).toUTCString()
 
-
+  }
+  res.json(responseObject)
+})
 
 // listen for requests :)
 var listener = app.listen(process.env.PORT, function () {
